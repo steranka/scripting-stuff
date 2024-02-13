@@ -1,0 +1,13 @@
+#!/bin/bash
+TMP=temp
+
+# Clean up tmp dir before each run
+rm -f $TMP*
+
+echo Testing stdout  > $TMP-stdout
+echo Testing stderr 1 2>>$TMP-stderr 1>&2
+echo Testing stderr 2 2>>$TMP-stderr 1>&2
+echo Testing stderr 3 2>>$TMP-stderr 1>&2
+
+
+(echo Below are the files created; head -30 $TMP* )

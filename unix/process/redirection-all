@@ -1,0 +1,7 @@
+#!/bin/sh
+
+exec 1>> redir.log
+exec 2>> redir.log
+
+echo running redirection.  Everything will be sent to the file redir.log > /dev/tty
+./redirection

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Credit goes to https://stackoverflow.com/a/30765848/3281336
+ps -o pid,ppid,pgid,args  | cut -c 1-100 | egrep -v "cut|myps|ps -o pid"
+#ps ww | cut -c 1-100

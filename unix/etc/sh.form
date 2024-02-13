@@ -1,0 +1,80 @@
+#!/bin/bash
+# @(#) $Header:$
+# $Locker:$
+tmpdir=${TMPDIR:-/tmp}
+tmpfile1=$tmpdir/$$_1XXX
+trap "rm -f $tmpdir/$$_*;exit 1"  2
+PAGER=${PAGER:-more}
+if [ "$TERM" = "sun-cmd" ]
+then
+    PAGER=${CMDTOOL_PAGER:-more}
+fi
+ 
+XXX_usage()
+{
+$PAGER <<EOF
+NAME
+     xxx -- illustrate manual page format
+
+USAGE
+     xxx [options] file1 [file2...]
+
+DESCRIPTION
+
+OPTIONS
+
+EXAMPLES
+
+CAVEATS
+
+FILES
+
+NOTES
+
+ENVIRONMENT VARIABLES USED
+
+SEE ALSO
+EOF
+exit 1
+}
+
+case $# in
+0)
+    XXX_usage
+    ;;
+esac
+
+
+moreopts=y
+while test $moreopts = y
+do
+    case $1 in
+    --help | --h* | --man | --m*)
+	XXX_usage
+    	shift
+    	;;
+
+    -v)
+	vopt=y
+    	shift
+    	;;
+
+    -*)
+	echo "Illegal or ambiguous option [$1]"
+	echo "Program stopping"
+	exit 1
+	;;
+
+    *)
+    	moreopts=n
+    	;;
+    esac
+done
+
+
+for iarg in "$@"
+do
+    echo Processing arg "$iarg"
+done
+rm -f $tmpdir/$$_*
+exit 0

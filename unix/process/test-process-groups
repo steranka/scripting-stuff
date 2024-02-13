@@ -1,0 +1,15 @@
+#!/bin/bash
+count=0
+
+NUM_PROCESS_GROUPS=${1:-3}
+echo Creating $NUM_PROCESS_GROUPS
+while [ "$count" -lt "$NUM_PROCESS_GROUPS" ]
+do
+    let count++
+    ./start-process-group "Process Group $count mypid=$$" &
+    echo To kill that process group, run the command:
+    echo kill -2 -$$
+    sleep 2
+done
+echo Exiting PID=$$
+sleep 200

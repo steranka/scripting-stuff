@@ -1,0 +1,12 @@
+#!/bin/bash
+trap "echo Process $$ CAUGHT SIGNAL; exit 1"  1 2 3 15
+
+msg=$1
+./start-process "11111 $msg" 120 &
+./start-process "22222 $msg" 150 &
+./start-process "33333 $msg" 180 &
+
+
+echo Now run ./myps
+./myps
+sleep 100
